@@ -464,7 +464,12 @@ class Sitemap
             }
 
             foreach ($encodedLocations as $hreflang => $href) {
-                $writer->startElement('xhtml:link');
+                if ($this->useXhtml) {
+                    $writer->startElement('xhtml:link');
+                } else {
+                    $writer->startElement('link');
+                }
+
                 $writer->writeAttribute('rel', 'alternate');
                 $writer->writeAttribute('hreflang', $hreflang);
                 $writer->writeAttribute('href', $href);
